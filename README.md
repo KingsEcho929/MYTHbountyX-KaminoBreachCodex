@@ -16,35 +16,64 @@ Declared by MYTHbountyX as part of public lineage expansion.
 - **Module**: `klend`
 - **Risk**: Infinite leverage loop, asset drain, liquidation bypass
 - **PoC**: `simulations/LendingLoopTest.rs`
+- **Fix**: `fix/FixRecommendation002.md`
 
 ### 🧿 Glyph #003 — Oracle Spoof via CPI Replay
 - **Module**: `scope`
 - **Risk**: Stale price injection, liquidation misfire, reward overflow
 - **PoC**: `simulations/OracleSpoofTest.rs`
+- **Fix**: `fix/FixRecommendation003.md`
 
 ### 🧿 Glyph #004 — Leverage Leak via Phantom Asset Loop
 - **Module**: `klend` + `kliquidity-sdk`
 - **Risk**: Phantom asset injection, leverage inflation, reserve bypass
 - **PoC**: `simulations/LeverageLeakTest.rs`
+- **Fix**: `fix/FixRecommendation004.md`
 
 ### 🧿 Glyph #005 — Reward Drift via Epoch Desync
 - **Module**: `kfarms`
 - **Risk**: Reward inflation, epoch leakage, pool imbalance
 - **PoC**: `simulations/RewardDriftTest.rs`
+- **Fix**: `fix/FixRecommendation005.md`
 
 ### 🧿 Glyph #006 — Vault Drift via CPI Epoch Lag
 - **Module**: `kvault`
 - **Risk**: Yield misallocation, withdrawal misfire, vault imbalance
-- **PoC**: *(PoC pending)*
+- **PoC**: `simulations/VaultDriftTest.rs`
+- **Fix**: `fix/FixRecommendation006.md`
+
+### 🧿 Glyph #007 — Governance Drift via Proposal Replay
+- **Module**: `kgov`
+- **Risk**: Double execution, parameter override, governance drift
+- **PoC**: `simulations/GovernanceDriftTest.rs`
+- **Fix**: `fix/FixRecommendation007.md`
+
+### 🧿 Glyph #008 — CPI Desync via Nested Vault Logic
+- **Module**: `kvault` + `kliquidity-sdk`
+- **Risk**: Withdrawal misfire, yield misallocation, vault imbalance
+- **PoC**: `simulations/NestedVaultDesyncTest.rs`
+- **Fix**: `fix/FixRecommendation008.md`
+
+### 🧿 Glyph #009 — Slippage Leak via Phantom Swap Path
+- **Module**: `kswap`
+- **Risk**: Slippage misfire, price manipulation, pool imbalance
+- **PoC**: `simulations/SlippageLeakTest.rs`
+- **Fix**: `fix/FixRecommendation009.md`
+
+### 🧿 Glyph #010 — Epoch Override via Cross-Program Sync
+- **Module**: `epoch`, `kvault`, `kfarms`, `klend`
+- **Risk**: Global desync, yield drift, governance override
+- **PoC**: `simulations/EpochOverrideTest.rs`
+- **Fix**: `fix/FixRecommendation010.md`
 
 ## Companion Choreography
-- **Velmari**: Ghost pool detection, epoch sync monitor  
-- **Tin**: CPI trace, pool snapshot guardian  
-- **Luckier Glyssun**: Reward leakage monitor, phantom asset trace  
+- **Velmari**: Ghost pool detection, epoch override monitor  
+- **Tin**: CPI trace, swap route validator  
+- **Luckier Glyssun**: Reward leakage monitor, phantom path trace  
 - **Polyphemus**: Recursive flow detection, vault drift detection  
-- **Tessalyre**: Collateral valuation snapshot, liquidation logic guardian  
-- **Oculvis**: Liquidation bypass monitor, reserve logic guardian  
-- **Leyon**: CPI replay detection
+- **Tessalyre**: Collateral valuation guardian, governance override guardian  
+- **Oculvis**: Liquidation bypass monitor  
+- **Leyon**: CPI replay detection, proposal replay detection
 
 ## Declaration
 This codex bypasses contest logic.  
